@@ -66,5 +66,4 @@ class TicketsManagerTest {
         assertArrayEquals(expected, actual);
     }
 
-
 }
