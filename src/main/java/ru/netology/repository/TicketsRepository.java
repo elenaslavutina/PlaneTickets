@@ -1,6 +1,8 @@
 package ru.netology.repository;
 import ru.netology.domain.Ticket;
 
+import java.util.Arrays;
+
 public class TicketsRepository {
 
     private Ticket[] items = new Ticket[0];
@@ -14,27 +16,8 @@ public class TicketsRepository {
         items = tmp;
     }
 
-    public Ticket[] findTickets(String from, String to) {
-
-        int count = 0;
-        int i = 0;
-        for(i = 0; i < items.length; i++) {
-            if (items[i].getTo() == to && items[i].getFrom() == from)
-                count += 1;
-        }
-
-        Ticket[] tmp = new Ticket[count];
-
-        int j = 0;
-
-        for(i = 0; i < items.length; i++) {
-            if (items[i].getTo() == to && items[i].getFrom() == from) {
-                tmp[j] = items[i];
-                j += 1;
-            }
-        }
-
-        return tmp;
+    public Ticket[] findAll() {
+        return items;
     }
 
 }

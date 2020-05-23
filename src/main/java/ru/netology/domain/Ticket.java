@@ -1,6 +1,6 @@
 package ru.netology.domain;
 
-public class Ticket {
+public class Ticket implements Comparable {
 
     private int    id;
     private String from;
@@ -36,4 +36,9 @@ public class Ticket {
         return this.duraction;
     }
 
+    @Override
+    public int compareTo(Object o) {
+        Ticket ticket = (Ticket) o;
+        return this.price - ticket.price;
+    }
 }
