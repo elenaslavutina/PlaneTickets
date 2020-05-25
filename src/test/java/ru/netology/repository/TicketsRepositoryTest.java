@@ -3,6 +3,7 @@ package ru.netology.repository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.Ticket;
+import ru.netology.exception.NotFoundException;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -66,41 +67,48 @@ class TicketsRepositoryTest {
     public void shouldNotAddToRepositoryIfPriceNegative() {
 
         Ticket adding = new Ticket(3, "SVO", "GOJ", -1000, 100);
-        Ticket[] expected = repository.findAll();
+        assertThrows(NotFoundException.class, () -> repository.add(adding));
+
+/*        Ticket[] expected = repository.findAll();
         repository.add(adding);
         Ticket[] actual = repository.findAll();
         assertArrayEquals(expected, actual);
-
+*/
     }
 
     @Test
     public void shouldNotAddToRepositoryIfPriceZero() {
         Ticket adding = new Ticket(3, "SVO", "GOJ", 0, 100);
-        Ticket[] expected = repository.findAll();
+        assertThrows(NotFoundException.class, () -> repository.add(adding));
+
+/*        Ticket[] expected = repository.findAll();
         repository.add(adding);
         Ticket[] actual = repository.findAll();
         assertArrayEquals(expected, actual);
-
+*/
     }
 
     @Test
     public void shouldNotAddToRepositoryIfDurationNegative() {
         Ticket adding = new Ticket(3, "SVO", "GOJ", 3500, -100);
-        Ticket[] expected = repository.findAll();
+        assertThrows(NotFoundException.class, () -> repository.add(adding));
+
+ /*       Ticket[] expected = repository.findAll();
         repository.add(adding);
         Ticket[] actual = repository.findAll();
         assertArrayEquals(expected, actual);
-
+*/
     }
 
     @Test
     public void shouldNotAddToRepositoryIfDurationZero() {
         Ticket adding = new Ticket(3, "SVO", "GOJ", 3500, 0);
-        Ticket[] expected = repository.findAll();
+        assertThrows(NotFoundException.class, () -> repository.add(adding));
+/*        Ticket[] expected = repository.findAll();
         repository.add(adding);
         Ticket[] actual = repository.findAll();
         assertArrayEquals(expected, actual);
-
+*/
     }
 
     @Test
@@ -136,10 +144,13 @@ class TicketsRepositoryTest {
     @Test
     void shouldNotRemoveNotExistingTicket() {
         Ticket ticketToRemove = new Ticket(7, "SVO", "GOJ", 4200, 100);
-        Ticket[] expected = repository.findAll();
+        assertThrows(NotFoundException.class, () -> repository.remove(ticketToRemove));
+
+  /*      Ticket[] expected = repository.findAll();
         repository.remove(ticketToRemove);
         Ticket[] actual = repository.findAll();
         assertArrayEquals(expected, actual);
+    */
     }
 
 }
