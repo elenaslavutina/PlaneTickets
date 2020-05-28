@@ -16,12 +16,6 @@ public class Ticket   {
     private int    price;     // in rubles
     private int    duraction; // in minutes
 
- /*   @Override
-    public int compareTo(Object o) {
-        Ticket ticket = (Ticket) o;
-        return this.price - ticket.price;
-    }
-*/
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
