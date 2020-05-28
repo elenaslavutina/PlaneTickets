@@ -1,5 +1,7 @@
 package ru.netology.repository;
+
 import ru.netology.domain.Ticket;
+import ru.netology.exception.InvalidDataException;
 import ru.netology.exception.NotFoundException;
 
 import java.util.Arrays;
@@ -9,8 +11,9 @@ public class TicketsRepository {
     private Ticket[] items = new Ticket[0];
 
     public void add(Ticket item) {
-        if ((item.getPrice()<=0)||(item.getDuraction()<=0))
-        {throw new NotFoundException("Incorrect data format");}
+        if ((item.getPrice() <= 0) || (item.getDuraction() <= 0)) {
+            throw new InvalidDataException("Incorrect data format");
+        }
         int length = items.length + 1;
         Ticket[] tmp = new Ticket[length];
         System.arraycopy(items, 0, tmp, 0, items.length);
@@ -22,7 +25,7 @@ public class TicketsRepository {
     public void remove(Ticket item) {
 
         if (!findOne(item)) {
-            throw new NotFoundException("Ticket: "+ item.toString()+  " not found");
+            throw new NotFoundException("Ticket: " + item.toString() + " not found");
         }
         int length = items.length - 1;
         Ticket[] tmp = new Ticket[length];
@@ -35,6 +38,14 @@ public class TicketsRepository {
         }
         items = tmp;
     }
+
+    public void clear() {
+
+        for (Ticket current : items) {
+            this.remove(current);
+        }
+    }
+
 
     public Ticket[] findAll() {
         return items;
