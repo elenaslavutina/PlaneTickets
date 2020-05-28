@@ -8,7 +8,8 @@ import java.util.Comparator;
 
 public class TicketsManager {
 
-    private TicketsRepository repository = new TicketsRepository();
+    private TicketsRepository repository;
+
     public TicketsManager(TicketsRepository repository) {
         this.repository = repository;
     }
@@ -35,30 +36,21 @@ public class TicketsManager {
         return tmp;
     }
 
-    private Ticket[] __findAllTickets(String from, String to) {
-
-        Ticket[] items = repository.findAll();
-
-        int count = 0;
-        int i = 0;
-        for(i = 0; i < items.length; i++) {
-            if (items[i].getTo() == to && items[i].getFrom() == from)
-                count += 1;
-        }
-
-        Ticket[] tmp = new Ticket[count];
-
-        int j = 0;
-
-        for(i = 0; i < items.length; i++) {
-            if (items[i].getTo() == to && items[i].getFrom() == from) {
-                tmp[j] = items[i];
-                j += 1;
+    
+    public Ticket[] __findAllTickets(String from, String to) {
+        Ticket[] result = new Ticket[0];
+        for (Ticket ticket : repository.findAll()) {
+            if (ticket.getFrom().equalsIgnoreCase(from) && ticket.getTo().equalsIgnoreCase(to)) {
+                Ticket[] tmp = new Ticket[result.length + 1];
+                System.arraycopy(result, 0, tmp, 0, result.length);
+                tmp[tmp.length - 1] = ticket;
+                result = tmp;
             }
         }
-
-        return tmp;
+        Arrays.sort(result);
+        return result;
     }
+
 
 }
 
