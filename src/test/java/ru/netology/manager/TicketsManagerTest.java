@@ -28,13 +28,6 @@ class TicketsManagerTest {
 
     }
 
-    @Test
-    public void shouldFilterAndSort() {
-        Ticket[] expected = new Ticket[]{forth, first, second};
-
-        Ticket[] actual = manager.findAllTickets("SVO","LED");
-        assertArrayEquals(expected, actual);
-    }
 
     @Test
     public void shouldFilterAndSortByPrice() {

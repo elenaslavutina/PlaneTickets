@@ -18,26 +18,24 @@ public class TicketsManager {
         repository.add(item);
     }
 
-    public Ticket[] findAllTickets(String from, String to) {
-
-        Ticket[] tmp = __findAllTickets(from, to);
-
-        Arrays.sort(tmp);
-
-        return tmp;
-    }
 
     public Ticket[] findAllTickets(String from, String to, Comparator<Ticket> comparator) {
 
-        Ticket[] tmp = __findAllTickets(from, to);
-
-        Arrays.sort(tmp, comparator);
-
-        return tmp;
+        Ticket[] result = new Ticket[0];
+        for (Ticket ticket : repository.findAll()) {
+            if (ticket.getFrom().equalsIgnoreCase(from) && ticket.getTo().equalsIgnoreCase(to)) {
+                Ticket[] tmp = new Ticket[result.length + 1];
+                System.arraycopy(result, 0, tmp, 0, result.length);
+                tmp[tmp.length - 1] = ticket;
+                result = tmp;
+            }
+        }
+        Arrays.sort(result, comparator);
+        return result;
     }
 
     
-    public Ticket[] __findAllTickets(String from, String to) {
+    public Ticket[] findAllTickets(String from, String to) {
         Ticket[] result = new Ticket[0];
         for (Ticket ticket : repository.findAll()) {
             if (ticket.getFrom().equalsIgnoreCase(from) && ticket.getTo().equalsIgnoreCase(to)) {

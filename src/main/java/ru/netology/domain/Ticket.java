@@ -8,7 +8,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @Data
 @AllArgsConstructor
-public class Ticket implements Comparable {
+public class Ticket   {
 
     private int    id;
     private String from;
@@ -16,12 +16,12 @@ public class Ticket implements Comparable {
     private int    price;     // in rubles
     private int    duraction; // in minutes
 
-    @Override
+ /*   @Override
     public int compareTo(Object o) {
         Ticket ticket = (Ticket) o;
         return this.price - ticket.price;
     }
-
+*/
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
