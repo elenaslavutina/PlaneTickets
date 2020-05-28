@@ -28,16 +28,6 @@ class TicketsManagerTest {
 
     }
 
-/*    @Test
-    public void shouldAddAllProductsToRepository() {
-
-        Ticket[] actual = repository.findAll();
-        int actualCount = actual.length;
-        int expectedCount = 4;
-        assertEquals(expectedCount, actualCount);
-
-    }
-*/
     @Test
     public void shouldFilterAndSort() {
         Ticket[] expected = new Ticket[]{forth, first, second};
